@@ -1,0 +1,11 @@
+package tesTing;
+
+public class App {
+
+	public static void main(String[] args) {
+		String[] send = {"CMD", "/C", "DIR", "DIRR", "dirrr"};
+		//String[] send = {"NOTEPAD", "argumento1", "otracosa"};
+		Ejecuta ejecutar = new Ejecuta(send);
+	}
+
+}

@@ -1,0 +1,22 @@
+package tesTing;
+
+public class argumentosMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		if( args.length <1) {
+			System.exit(1);
+		}
+		try {
+			
+		}catch (NumberFormatException e) {
+			// TODO: handle exception
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		if(Integer.parseInt(args[0])) {
+			
+		}
+	}
+
+}

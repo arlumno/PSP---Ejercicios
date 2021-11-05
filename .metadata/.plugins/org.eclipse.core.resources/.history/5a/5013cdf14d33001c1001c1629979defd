@@ -1,0 +1,15 @@
+package tesTing;
+
+import java.io.File;
+
+public class Aleatorios {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		ProcessBuilder pb = new ProcessBuilder("java", "tesTing.GeneradorAleatorios"); 
+		pb.directory(new File(".\\bin"));
+		p.start();
+	}
+
+}

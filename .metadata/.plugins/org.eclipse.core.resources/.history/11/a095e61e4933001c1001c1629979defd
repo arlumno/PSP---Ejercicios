@@ -1,0 +1,9 @@
+package tesTing;
+
+public class App {
+
+	public static void main(String[] args) {		
+		Ejecuta ejecutar = new Ejecuta({"CMD", "DIR"});
+	}
+
+}
