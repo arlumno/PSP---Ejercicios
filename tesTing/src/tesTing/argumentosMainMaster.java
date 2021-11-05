@@ -26,8 +26,7 @@ public class argumentosMainMaster {
 		
 			try {
 				
-				Process p = pb.start();
-				p.waitFor();
+				Process p = pb.start();				
 				System.out.println(p.waitFor());
 				
 			}catch (Exception e) {

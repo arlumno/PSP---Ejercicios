@@ -1,0 +1,20 @@
+package tesTing;
+
+import java.io.File;
+
+public class devolverCadenaMaster {
+
+	public static void main(String[] args) {
+		ProcessBuilder pb = null;
+		try {
+			pb= new ProcessBuilder("java","tesTing.devolverCadena","ejemplo");
+			pb.directory(new File(".\\bin"));	
+
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+
+
+	}
+
+}
