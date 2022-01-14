@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class LeerCadenasMaster {
@@ -16,12 +17,18 @@ public class LeerCadenasMaster {
 		String resultado = "";
 		try {
 			Process p = pb.start();
-			OutputStreamWriter isr = new OutputStreamWriter(p.getOutputStream());
-			while ((resultado = lector.next()) != null) {
-				
-				
-			}
+			PrintStream ps= new PrintStream(p.getOutputStream());
+			System.out.println(" -- Inicio del Programa -- ");
 			
+			while (p.isAlive()) {
+				System.out.println("Escribe algo:");
+				if((resultado = lector.next()) != null ) {
+					ps.println(resultado);
+					ps.flush();
+					Thread.sleep(100); 
+				}
+			}
+			System.out.println(" -- Fin del Programa -- ");
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
