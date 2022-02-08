@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="tesTing.ejemplos"/>
-    <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
-    <fullyQualifiedTypeName name="tesTing.LeerNombre"/>
-    <fullyQualifiedTypeName name="javax.print.attribute.standard.PrinterInfo"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
-    <fullyQualifiedTypeName name="java.security.cert.CollectionCertStoreParameters"/>
     <fullyQualifiedTypeName name="java.util.Collections"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="tesTing.Ejecuta"/>
@@ -52,7 +45,19 @@
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="ejerciciosT2Hilos.ejercicio_7_Cuenta"/>
     <fullyQualifiedTypeName name="ejerciciosT2Hilos.ejercicio_7_Persona"/>
-    <fullyQualifiedTypeName name="java.lang.Override"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.ejercicio_10_Cola"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.ejercicio_10_Productor"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.ejercicio_10_Consumidor"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Arbitro"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Jugador"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Alumno"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Profesor"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Bienvenida"/>
+    <fullyQualifiedTypeName name="java.lang.Thread.State"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.Terminal"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.ContadorHilo"/>
+    <fullyQualifiedTypeName name="ejerciciosT2Hilos.ContarThread"/>
 </qualifiedTypeNameHistroy>
