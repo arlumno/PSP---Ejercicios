@@ -8,6 +8,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="turnoActual"/>
+			<item value="notif"/>
 			<item value="sync"/>
 			<item value="sy"/>
 			<item value="ejercicio_1_Thread"/>

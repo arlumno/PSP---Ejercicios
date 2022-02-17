@@ -1,6 +1,5 @@
 package ejerciciosT2Hilos;
 
-import javax.sql.rowset.Joinable;
 
 class repaso_act_2_1 {
 
@@ -16,6 +15,10 @@ class repaso_act_2_1 {
 		t3.start();
 		t4.start();
 
+		Thread.currentThread().setName("Manito");
+		System.out.println(Thread.currentThread().getName());
+		System.out.println(Thread.activeCount());
+		
 		try {
 			t1.join();
 			t2.join();
