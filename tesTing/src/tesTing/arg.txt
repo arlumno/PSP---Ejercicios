@@ -1,3 +1,0 @@
-hola
-cosas NO es palíndromo 
-sas ES palíndromo 

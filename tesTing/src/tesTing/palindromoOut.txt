@@ -1,4 +1,0 @@
-uno NO es palíndromo 
-unnu ES palíndromo 
-hola NO es palíndromo 
-arg gra ES palíndromo 
