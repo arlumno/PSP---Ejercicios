@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;ejerciciosT2Hilos.actividad_2_1_Thread&apos; to &apos;actividad_2_1_Thread_Tic&apos;&#x0D;&#x0A;- Original project: &apos;ejerciciosT2Hilos&apos;&#x0D;&#x0A;- Original element: &apos;ejerciciosT2Hilos.actividad_2_1_Thread&apos;&#x0D;&#x0A;- Renamed element: &apos;ejerciciosT2Hilos.actividad_2_1_Thread_Tic&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;actividad_2_1_Thread&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;ejerciciosT2Hilos{actividad_2_1_Thread.java[actividad_2_1_Thread" matchStrategy="1" name="actividad_2_1_Thread_Tic" qualified="false" references="true" similarDeclarations="true" stamp="1637942321122" textual="false" version="1.0"/>
+</session>

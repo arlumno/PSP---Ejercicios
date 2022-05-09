@@ -1,0 +1,39 @@
+package tesTing;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class Aleatorios {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String lineaEntrada;
+		String lineaSalida;
+		Scanner lector = new Scanner(System.in);
+		ProcessBuilder pb = new ProcessBuilder("java", "tesTing.GeneradorAleatorios"); 
+		pb.directory(new File(".\\bin"));		
+		try {
+			Process p = pb.start();
+			BufferedReader br = new BufferedReader(new InputStreamReader( p.getInputStream()));
+			PrintStream ps = new PrintStream(p.getOutputStream());
+			
+			while(p.isAlive()) {
+				lineaEntrada = br.readLine();		
+				//System.out.println(lineaEntrada);
+				
+				lineaSalida = lector.nextLine();
+				//System.out.println("escrito: " + lineaSalida);
+				ps.print(lineaSalida);
+//				ps.flush();
+			}
+			
+		}catch (Exception e) {
+			System.out.println("Error: "  + e.toString() );
+		}
+		System.out.println("Fin del programa");
+	}
+
+}
