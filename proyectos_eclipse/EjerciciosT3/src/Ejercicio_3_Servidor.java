@@ -17,7 +17,7 @@ public class Ejercicio_3_Servidor {
 
 	public static void main(String[] args) {
 			try {
-				Numeros numero;
+				Numeros numero = null;
 				int puerto = 5555;
 				ServerSocket server = new ServerSocket(puerto);
 				System.out.println("Esperando cliente...");

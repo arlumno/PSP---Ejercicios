@@ -28,16 +28,17 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 	JButton desconectar = new JButton("Salir");
 	boolean repetir = true;
 	String nombre;
-	//************************
+	// ************************
 	TextoChat textoChat = new TextoChat();
 	byte[] bytesRecibidos = new byte[1024];
-	DatagramPacket paqueteSalida; 
+	DatagramPacket paqueteSalida;
 	DatagramPacket paqueteEntrada;
 	ObjectOutputStream oos = null;
 	ObjectInputStream ois = null;
-	ByteArrayOutputStream baos = null;			
+	ByteArrayOutputStream baos = null;
 	ByteArrayInputStream bais = null;
-	//************************
+
+	// ************************
 	// constructor
 	public UDPMultiChat(String nom) {
 		super(" VENTANA DE CHAT UDP - Nick: " + nom);
@@ -68,19 +69,17 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 			textoChat.escribir(texto);
 			try {
 				// ENVIANDO mensaje al grupo
-//				DatagramPacket paquete = new DatagramPacket(texto.getBytes(), texto.length(), grupo, Puerto);
-//				ms.send(paquete);
-				
+
 				baos = new ByteArrayOutputStream();
 				oos = new ObjectOutputStream(baos);
 				oos.reset();
 				oos.writeObject(textoChat);
 				byte[] bytesEnviados = baos.toByteArray();
 				paqueteSalida = new DatagramPacket(bytesEnviados, bytesEnviados.length, grupo, Puerto);
-				ms.send(paqueteSalida);				
+				ms.send(paqueteSalida);
 				baos.close();
 				oos.close();
-				
+
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -96,7 +95,7 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 				oos.writeObject(textoChat);
 				byte[] bytesEnviados = baos.toByteArray();
 				paqueteSalida = new DatagramPacket(bytesEnviados, bytesEnviados.length, grupo, Puerto);
-				ms.send(paqueteSalida);				
+				ms.send(paqueteSalida);
 				baos.close();
 				oos.close();
 				repetir = false;
@@ -112,31 +111,54 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 	// DESDE EL MÉTODO RUN SE RECIBEN LOS MENSAJES
 	// Y SE PINTAN EN LA PANTALLA
 	public void run() {
+		// *** SINCRONIZAR ** 
+		try {
+			baos = new ByteArrayOutputStream();
+			oos = new ObjectOutputStream(baos);
+			oos.reset();
+			oos.writeObject(textoChat);
+			byte[] bytesEnviados = baos.toByteArray();
+			paqueteSalida = new DatagramPacket(bytesEnviados, bytesEnviados.length, grupo, Puerto);
+			ms.send(paqueteSalida);
+			baos.close();
+			oos.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// *** FIN  SINCRONIZAR ** 
 		while (repetir) {
 			try {
-//				DatagramPacket p = new DatagramPacket(buf, buf.length);
-//				ms.receive(p);
-//				String texto = new String(p.getData(), 0, p.getLength());
-//				textarea1.append(texto + "\n");
-				
-				bytesRecibidos = new byte[1024];				
-				paqueteEntrada = new DatagramPacket(bytesRecibidos,bytesRecibidos.length);				
-				ms.receive(paqueteEntrada);						
+
+				bytesRecibidos = new byte[1024];
+				paqueteEntrada = new DatagramPacket(bytesRecibidos, bytesRecibidos.length);
+				ms.receive(paqueteEntrada);
 				bais = new ByteArrayInputStream(bytesRecibidos);
 				ois = new ObjectInputStream(bais);
-				System.out.println("Chat inicial1: \n" + textoChat.toString());
-				
+
 				TextoChat chatEntrada = (TextoChat) ois.readObject();
-				System.out.println("Chat chatEntrada: \n" + chatEntrada.toString());
-
-				textoChat.addChat(chatEntrada);	
-				System.out.println("Chat inicial2: \n" + textoChat.toString());
-
-				
-				reCargarChat(); 
-				bais.close();				
+				bais.close();
 				ois.close();
 				
+				
+				if(chatEntrada.isSincronizar()) {
+					if(!textoChat.isSincronizar()) { //si el chat de entrada pide sincronizar, y este chat ya está sincronizado, lo enviamos.
+						baos = new ByteArrayOutputStream();
+						oos = new ObjectOutputStream(baos);
+						oos.reset();
+						oos.writeObject(textoChat);
+						byte[] bytesEnviados = baos.toByteArray();
+						paqueteSalida = new DatagramPacket(bytesEnviados, bytesEnviados.length, grupo, Puerto);
+						ms.send(paqueteSalida);
+						baos.close();
+						oos.close();
+					}					
+				}else{
+					textoChat = chatEntrada;
+				}
+
+				reCargarChat();
+
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -151,19 +173,20 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 	public void reCargarChat() {
 		textarea1.selectAll();
 		textarea1.replaceSelection("");
-		System.out.println(textoChat.getConversacion());
+
 		System.out.println(textoChat.conversacion.toString());
-		
-		for(Map.Entry<Long,String> linea: textoChat.getConversacion().entrySet()) {
-			textarea1.append(linea.getValue()+ "\n");
+
+		for (String linea : textoChat.getConversacion()) {
+			textarea1.append(linea + "\n");
 		}
 	}
+
 	public static void main(String args[]) throws IOException {
 		String nombre = JOptionPane.showInputDialog("Introduce tu nombre o nick:");
 		// Se crea el socket multicast
 		ms = new MulticastSocket(Puerto);
 		grupo = InetAddress.getByName("225.0.0.1");// Grupo
-		// Nos unimos al grupo		
+		// Nos unimos al grupo
 		SocketAddress sock = new InetSocketAddress(grupo, Puerto);
 		ms.joinGroup(sock, NetworkInterface.getByInetAddress(grupo));// Nos unimos al grupo
 		if (!nombre.trim().equals("")) {
@@ -179,28 +202,29 @@ public class UDPMultiChat extends JFrame implements ActionListener, Runnable {
 }// ..MultiChatUDP
 
 class TextoChat implements Serializable {
-//	ArrayList<String> conversacion = new ArrayList<String>();
-	HashMap<Long,String> conversacion = new HashMap<Long,String>();
-	
+	ArrayList<String> conversacion = new ArrayList<String>();
+	boolean sincronizar = true;
+
 	public void escribir(String texto) {
-		conversacion.put(System.currentTimeMillis(),texto);
+		conversacion.add(texto);
+		setSincronizar(false);
 	}
-	
-	public void addChat(TextoChat chat) {		
-		conversacion.putAll(chat.getConversacion());
-	}
-	
-	public HashMap<Long,String> getConversacion() {
+
+	public ArrayList<String> getConversacion() {
 		return conversacion;
 	}
-	
-//	public HashMap<Long,String> getConversacionHM() {
-//		
-//		return conversacion;
-//	}
-	
+
+
 	@Override
-	public String toString() {	
+	public String toString() {
 		return conversacion.toString();
+	}
+
+	public boolean isSincronizar() {
+		return sincronizar;
+	}
+
+	public void setSincronizar(boolean sincronizar) {
+		this.sincronizar = sincronizar;
 	}
 }
