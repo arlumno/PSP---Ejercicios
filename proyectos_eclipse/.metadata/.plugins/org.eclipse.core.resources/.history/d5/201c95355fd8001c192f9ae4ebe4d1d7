@@ -55,7 +55,7 @@ public class Ej_X3_Servidor {
 				}else {
 					mensaje= "Error, usuario o contraseña incorrectos";
 				}
-				mensajeRetorno = mensaje.getBytes();
+				mensajeRetorno = mensaje.getByteS();
 					
 				paqueteSalida = new DatagramPacket(mensajeRetorno, mensajeRetorno.length, ipCliente, puertoCliente);
 				socket.send(paqueteSalida);

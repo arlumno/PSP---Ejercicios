@@ -16,7 +16,7 @@ public class Ej_X3_Servidor {
 		byte[] bufer = new byte[1024];
 		boolean fin = false;
 		byte[] mensajeRetorno = new byte[1024];
-		String mensaje = "";
+		String mensaje;
 		InetAddress ipCliente;
 		int puertoCliente;
 		final String USUARIO = "armando";
@@ -46,16 +46,11 @@ public class Ej_X3_Servidor {
 				passCliente = new String(paqueteEntrada.getData()).trim();			
 				System.out.println("Pass: " + passCliente);
 				
-				
 				ipCliente = paqueteEntrada.getAddress();
 				puertoCliente = paqueteEntrada.getPort();
 
-				if(usuarioCliente.equals(USUARIO) && passCliente.equals(PASS)) {
-					mensaje= "Credenciales validadas";
-				}else {
-					mensaje= "Error, usuario o contraseña incorrectos";
-				}
-				mensajeRetorno = mensaje.getBytes();
+			
+
 					
 				paqueteSalida = new DatagramPacket(mensajeRetorno, mensajeRetorno.length, ipCliente, puertoCliente);
 				socket.send(paqueteSalida);
