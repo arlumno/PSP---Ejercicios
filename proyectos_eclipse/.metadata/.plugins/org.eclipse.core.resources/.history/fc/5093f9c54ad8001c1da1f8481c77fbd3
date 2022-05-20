@@ -1,0 +1,14 @@
+
+/*
+ * Realizar un programa cliente que lea un entero por teclado y se lo envíe a un programa servidor que le devolverá el doble del numero.
+ * El cliente tiene que escribirla en la consola tanto el numero enviado com oel doble recibido. 
+ * */
+
+public class Ej_X1_Servidor {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

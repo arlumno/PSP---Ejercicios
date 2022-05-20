@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ConnectException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -161,4 +162,48 @@ class Alumno{
 		this.nota = nota;
 	}
 	
+}
+
+
+class Numeros implements Serializable {
+	int numero;
+	long cuadrado;
+	long cubo;
+
+	public Numeros(int numero) {
+		this.numero = numero;
+	}
+
+	public Numeros() {
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public long getCuadrado() {
+		return cuadrado;
+	}
+
+	public void setCuadrado(long cuadrado) {
+		this.cuadrado = cuadrado;
+	}
+
+	public long getCubo() {
+		return cubo;
+	}
+
+	public void setCubo(long cubo) {
+		this.cubo = cubo;
+	}
+
+	@Override
+	public String toString() {
+		return "Numeros [numero=" + numero + ", cuadrado=" + cuadrado + ", cubo=" + cubo + "]";
+	}
+
 }
